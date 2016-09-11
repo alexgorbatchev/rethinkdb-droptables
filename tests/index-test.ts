@@ -30,13 +30,13 @@ describe("rethinkdb-droptables", () => {
 
   it("deletes all tables", () =>
     dropTables(connection, DB)
-      .then(() => r.db(DB).tableList().run(connection))
+      .then(() => tableList())
       .then((tables: string[]) => expect(tables.length).to.equal(0))
   );
 
   it("deletes specified tables", () =>
     dropTables(connection, DB, [ TABLES[0] ])
-      .then(() => r.db(DB).tableList().run(connection))
+      .then(() => tableList())
       .then((tables: string[]) => expect(tables[0]).to.equal(TABLES[1]))
   );
 });
